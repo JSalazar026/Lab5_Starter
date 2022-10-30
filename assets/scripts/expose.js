@@ -10,6 +10,7 @@ function init() {
   let volumeSlider = document.getElementById('volume');
   let playSoundButton = document.querySelector('button');
   let confetti = new JSConfetti();
+  let hornChoice = "Nothing";
 
   hornType.addEventListener('change', function(event) {
     if(event.target.value === "air-horn")
@@ -27,6 +28,7 @@ function init() {
       imgFile[0].src = "assets/images/party-horn.svg";
       audioFile[0].src = "assets/audio/party-horn.mp3";
     }
+    hornChoice = event.target.value;
   })
   volumeSlider.addEventListener('input', function(event) {
     if(event.target.value === 0)
@@ -53,9 +55,8 @@ function init() {
 
   playSoundButton.addEventListener('click', function(){
     audioFile[0].play();
-    confetti.addConfetti();
-    if(audioFile[0].src === "assets/audio/party-horn.mp3") {
-      startConfetti();
+    if(hornChoice === "party-horn") {
+      confetti.addConfetti();
     }
   })
 
